@@ -1,0 +1,82 @@
+[
+    {
+        "id":1,
+        "name":"Story Book",
+        "title":"🌙 The Moonlight Adventure",
+        "price":0,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":2,
+        "name":"Moonlight Tales",
+        "title":"The Night Owl’s Secret",
+        "price":0,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":3,
+        "name":"Sky Bird",
+        "title":"The Bird Who Wanted to Touch the Sky",
+        "price":10,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":4,
+        "name":"Flower Girl",
+        "title":"The Girl Who Spoke to Flowers",
+        "price":0,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":5,
+        "name":"Rainbow Quest Book",
+        "title":"Journey Beyond the Rainbow",
+        "price":30,
+        "catagory":"Adventure",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":6,
+        "name":"The Tiny Fairy Book",
+        "title":"The Little Fairy Who Found Her Wings",
+        "price":50,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":7,
+        "name":"The Curious Squirrel",
+        "title":"How the Squirrel Learned to Share",
+        "price":70,
+        "catagory":"Moral Stories",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":8,
+        "name":"Starlight Adventures",
+        "title":"The Little Star Who Lost Its Shine",
+        "price":50,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":9,
+        "name":"The Secret Garden Gate",
+        "title":"Unlocking the Magic of Hidden Doors",
+        "price":50,
+        "catagory":"Children/Fantasy",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    },
+    {
+        "id":10,
+        "name":"Enchanted Hourglass",
+        "title":"The Hourglass That Could Grant Wishes",
+        "price":50,
+        "catagory":"free",
+        "image":"https://images.freepik.com/free-vector/books-stack-realistic_1537673.jpg"
+    }
+]
