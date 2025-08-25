@@ -1,70 +1,131 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Login from './Login'
-import { useForm } from 'react-hook-form'
-
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Login from "./Login";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 function Signup() {
-    const {
-        register,
-        handleSubmit,
-        
-        formState: { errors },
-      } = useForm()
-    
-      const onSubmit = (data) => console.log(data)
-  return (
-    
-    <div className='flex justify-center items-center min-h-screen bg-gray-100 px-4'>
-    <div  className="">
-    <div className="">
-    <form onSubmit={handleSubmit(onSubmit)} method="div">
-      {/* if there is a button in form, it will close the modal */}
-      <Link to='/' className=" ml-60 font-bold " >✕</Link>
-    
-    <h3 className="font-bold text-lg">Signup</h3>
-    <div className='mt-6'>
-        <span className='font-semibold'>Name</span><br/>
-        <input type="text" className="input outline-none mt-4 ml-2" placeholder="Enter your full name" 
-        {...register("Name", { required: true })}
-        /><br/>
-        {errors.Name && <span className='text-sm text-red-500'>This field is required</span>}<br/>
-        
-    </div>
-    
-    <div className='mt-6'>
-        <span className='font-semibold'>Email</span><br/>
-        <input type="email" className="input outline-none mt-4 ml-2" placeholder="Enter your email" 
-         {...register("Email", { required: true })}
-        /><br/>
-        {errors.Email && <span className='text-sm text-red-500'>This field is required</span>}<br/>
-        
-    </div>
-    <div className='mt-6'>
-        <span className='mt-6 font-semibold'>Password</span><br/>
-        <input type="password" className="input mt-4 ml-2" placeholder="Enter your password" 
-         {...register("Pass", { required: true })}
-        /><br/>
-        {errors.Pass && <span className='text-sm text-red-500'>This field is required</span>}<br/>
-        
-    </div>
-    <div className='flex justify-around mt-6'>
-        <button className="btn  btn-secondary">Signup</button>
-        <p className='mt-3 ml-3'>Have Account? 
-            <button className='underline text-blue-400 hover:cursor-pointer'
-            onClick={()=> document.getElementById("my_modal_3").showModal()}
-            > Login </button>
-           <Login/>
-            </p>
-        
-         
-    </div>
-    </form>
-  </div>
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    </div>
-    </div>
-    
-  )
+  const onSubmit = async (data) => {
+    const userInfo = {
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password,
+    };
+    await axios
+      .post("http://localhost:4001/user/signup", userInfo)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          toast.success("Signup Successfully");
+          navigate(from, { replace: true });
+        }
+        localStorage.setItem("Users", JSON.stringify(res.data.user));
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err);
+          toast.error("Error: " + err.response.data.message);
+        }
+      });
+  };
+  return (
+    <>
+      <div className="flex h-screen items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
+        <div className="">
+          <div className="">
+            <form onSubmit={handleSubmit(onSubmit)} >
+              {/* if there is a button in form, it will close the modal */}
+              <Link
+                to="/"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              >
+                ✕
+              </Link>
+
+              <h3 className="font-bold text-lg">Signup</h3>
+              <div className="mt-4 space-y-2">
+                <span>Name</span>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Enter your fullname"
+                  className="w-80 px-3 py-1 border rounded-md outline-none"
+                  {...register("fullname", { required: true })}
+                />
+                <br />
+                {errors.fullname && (
+                  <span className="text-sm text-red-500">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              {/* Email */}
+              <div className="mt-4 space-y-2">
+                <span>Email</span>
+                <br />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-80 px-3 py-1 border rounded-md outline-none"
+                  {...register("email", { required: true })}
+                />
+                <br />
+                {errors.email && (
+                  <span className="text-sm text-red-500">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              {/* Password */}
+              <div className="mt-4 space-y-2">
+                <span>Password</span>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Enter your password"
+                  className="w-80 px-3 py-1 border rounded-md outline-none"
+                  {...register("password", { required: true })}
+                />
+                <br />
+                {errors.password && (
+                  <span className="text-sm text-red-500">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              {/* Button */}
+              <div className="flex justify-around mt-4">
+                <button className="bg-green-500 text-white rounded-md px-3 py-1 hover:bg-green-700 duration-200">
+                  Signup
+                </button>
+                <p className="text-xl">
+                  Have account?{" "}
+                  <button
+                    className="underline text-blue-900 cursor-pointer"
+                    onClick={() =>
+                      document.getElementById("my_modal_3").showModal()
+                    }
+                  >
+                    Login
+                  </button>{" "}
+                  <Login />
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Signup
+export default Signup;
